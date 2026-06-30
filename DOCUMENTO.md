@@ -5,7 +5,7 @@ Branch: **dev**
 
 ---
 
-## 1. O que já foi feito
+## 1. O que já foi feitos
 
 - Estrutura MVC completa: `controller/`, `views/`, `model/`, `routes/`, `middlewares/`, `config/`, `database/`.
 - Autenticação com **JWT** + senhas com **bcrypt**.
