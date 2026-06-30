@@ -1,0 +1,54 @@
+{
+	"info": {
+		"name": "API Despesas Simples",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [{"key": "Content-Type", "value": "application/json"}],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"admin@admin.com\", \"senha\": \"123456\"}"
+				},
+				"url": { "raw": "http://localhost:3000/auth/login" }
+			}
+		},
+		{
+			"name": "Listar Despesas",
+			"request": {
+				"auth": { "type": "bearer", "bearer": [{"key": "token", "value": "COLE_O_TOKEN_AQUI", "type": "string"}] },
+				"method": "GET",
+				"url": { "raw": "http://localhost:3000/expenses" }
+			}
+		},
+		{
+			"name": "Criar Despesa",
+			"request": {
+				"auth": { "type": "bearer", "bearer": [{"key": "token", "value": "COLE_O_TOKEN_AQUI", "type": "string"}] },
+				"method": "POST",
+				"header": [{"key": "Content-Type", "value": "application/json"}],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descricao\": \"Teste\",\n    \"valor\": 10.00,\n    \"data\": \"2026-06-30\",\n    \"status\": \"PENDENTE\",\n    \"categoriaId\": \"ID_DA_CATEGORIA\"\n}"
+				},
+				"url": { "raw": "http://localhost:3000/expenses" }
+			}
+		},
+		{
+			"name": "Atualizar Categoria (PUT)",
+			"request": {
+				"auth": { "type": "bearer", "bearer": [{"key": "token", "value": "COLE_O_TOKEN_AQUI", "type": "string"}] },
+				"method": "PUT",
+				"header": [{"key": "Content-Type", "value": "application/json"}],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"nome\": \"Novo Nome\", \"descricao\": \"Nova Descrição\"}"
+				},
+				"url": { "raw": "http://localhost:3000/categories/ID_AQUI" }
+			}
+		}
+	]
+}
