@@ -1,143 +1,165 @@
-# Sistema de Controle de Despesas — API RESTful
+Sistema de Gestão de Despesas Pessoais — Documentação da API
 
-API REST desenvolvida em **Node.js + Express + Sequelize + MySQL**, seguindo o padrão **MVC**, para gerenciar despesas pessoais com autenticação JWT, categorias e estatísticas (dashboard).
+Este projeto é uma API RESTful desenvolvida para o controle de despesas financeiras, permitindo a gestão de usuários, categorias e gastos, com foco em segurança, organização e boas práticas de desenvolvimento.
 
----
 
-## Tecnologias
 
-- **Node.js** + **Express** — servidor e rotas
-- **Sequelize** + **MySQL** (mysql2) — ORM e banco de dados
-- **JWT** (jsonwebtoken) — autenticação
-- **bcrypt** — criptografia de senhas
-- **dotenv** — variáveis de ambiente
 
----
+ Tecnologias Utilizadas
 
-## Arquitetura (MVC)
+•
+Node.js: Ambiente de execução JavaScript no servidor.
 
-```
-src/
- ├── controller/     # Regras de negócio (User, Category, Expense)
- ├── views/          # Camada que trata req/res e formata a resposta (HATEOAS)
- ├── model/          # Models do Sequelize + conexão + associações
- ├── routes/         # Definição das rotas RESTful
- ├── middlewares/    # Autenticação (JWT) e tratamento global de erros
- ├── config/         # Configuração do Sequelize CLI
- ├── database/       # Migrations e Seeders
- └── app.js          # Inicialização do servidor
-```
+•
+Express: Framework para construção de APIs rápidas e flexíveis.
 
----
+•
+Sequelize: ORM (Object-Relational Mapping) para gerenciamento do banco de dados MySQL.
 
-## Como Rodar
+•
+JWT (JSON Web Token): Sistema de autenticação segura para rotas protegidas.
 
-1. Instale o [Node.js](https://nodejs.org/) e tenha um **MySQL** rodando.
-2. Crie o banco de dados (padrão `mvc`) e ajuste o arquivo `.env`:
+•
+Bcrypt: Criptografia de senhas para garantir a segurança dos usuários.
 
-   ```env
-   PORT=3000
-   JWT_SECRET=sua_chave_secreta
-   DB_NAME=mvc
-   DB_USER=root
-   DB_PASS=
-   DB_HOST=localhost
-   ```
+•
+Dotenv: Gerenciamento de variáveis de ambiente (.env).
 
-3. Instale as dependências:
 
-   ```bash
-   npm install
-   ```
 
-4. Rode as migrations e os seeders (cria as tabelas e dados de exemplo):
 
-   ```bash
-   npm run db:migrate
-   npm run db:seed
-   ```
+ Arquitetura do Projeto (MVC)
 
-5. Inicie o servidor:
+O projeto segue o padrão MVC (Model-View-Controller), garantindo a separação de responsabilidades:
 
-   ```bash
-   npm start
-   ```
+•
+/src/model: Define a estrutura das tabelas e as associações (Relacionamentos 1:N).
 
-   O servidor sobe em `http://localhost:3000`.
+•
+/src/controller: Contém as regras de negócio e lógica de processamento.
 
-> Usuário de demonstração criado pelo seeder: **admin@admin.com** / senha **123456**.
+•
+/src/views: Formata a resposta JSON, incluindo links HATEOAS para navegação na API.
 
----
+•
+/src/routes: Define os endpoints da aplicação.
 
-## Rotas
+•
+/src/middlewares: Filtros de segurança (Auth) e tratamento global de erros.
 
-### Autenticação
-| Método | Rota          | Descrição                  |
-|--------|---------------|----------------------------|
-| POST   | `/users`      | Cadastro de usuário        |
-| POST   | `/auth/login` | Login (retorna o token JWT)|
+•
+/src/database: Contém as migrações (criação de tabelas) e sementes (dados iniciais).
 
-### Categorias *(requer token)*
-| Método | Rota               |
-|--------|--------------------|
-| GET    | `/categories`      |
-| GET    | `/categories/:id`  |
-| POST   | `/categories`      |
-| PUT    | `/categories/:id`  |
-| DELETE | `/categories/:id`  |
 
-### Despesas *(requer token)*
-| Método | Rota             |
-|--------|------------------|
-| GET    | `/expenses`      |
-| GET    | `/expenses/:id`  |
-| POST   | `/expenses`      |
-| PUT    | `/expenses/:id`  |
-| DELETE | `/expenses/:id`  |
 
-### Dashboard *(requer token)*
-| Método | Rota                                | Resposta                                   |
-|--------|-------------------------------------|--------------------------------------------|
-| GET    | `/dashboard/total-expenses`         | `{ "total": 3500.50 }`                     |
-| GET    | `/dashboard/expenses-count`         | `{ "quantidade": 45 }`                     |
-| GET    | `/dashboard/expenses-by-category`   | `[{ "categoria": "...", "total": 0 }]`     |
 
----
+ Instalação e Configuração
 
-## Filtros de Despesas
+1.
+Instalar dependências:
 
-A rota `GET /expenses` aceita filtros via query string:
+Bash
 
-- `status` — `PENDENTE` ou `PAGA`
-- `categoria` — id da categoria
-- `dataInicio` / `dataFim` — período (AAAA-MM-DD)
-- `valorMin` / `valorMax` — faixa de valor
 
-Exemplo:
+npm install
 
-```http
-GET /expenses?status=PAGA&categoria=<id>&valorMin=100&valorMax=500
-```
 
----
 
-## Autenticação
 
-Envie o token retornado no login no cabeçalho das rotas protegidas:
 
-```http
-Authorization: Bearer <seu_token_jwt>
-```
+2.
+Configurar Banco de Dados:
+Crie um banco de dados chamado mvc no seu MySQL e configure o arquivo .env na raiz do projeto:
 
----
+Plain Text
 
-## Entidades
 
-- **Usuário**: id, nome, email, senha, createdAt, updatedAt
-- **Categoria**: id, nome, descricao
-- **Despesa**: id, descricao, valor, data, status (`PENDENTE`/`PAGA`), categoriaId, usuarioId
+DB_USER=seu_usuario
+DB_PASS=sua_senha
+DB_NAME=mvc
+DB_HOST=localhost
+JWT_SECRET=sua_chave_secreta
 
-### Relacionamentos
-- Um usuário possui várias despesas.
-- Uma categoria possui várias despesas.
-- Uma despesa pertence a um usuário e a uma categoria.
+
+
+
+
+3.
+Rodar Migrações e Seeders:
+
+Bash
+
+
+npm run db:reset
+
+
+
+
+
+4.
+Iniciar o Servidor:
+
+Bash
+
+
+npm start
+
+
+
+
+
+
+
+
+ Como Testar (Guia Postman)
+
+1. Autenticação
+
+•
+Cadastro: POST /users (Envie nome, email e senha).
+
+•
+Login: POST /auth/login (Receba o Token).
+
+•
+Configuração: Copie o token e configure na aba Authorization da sua Collection como Bearer Token.
+
+2. CRUD de Categorias e Despesas
+
+•
+GET /categories: Lista categorias.
+
+•
+POST /expenses: Cria um gasto (necessário passar o categoriaId).
+
+•
+PUT /expenses/:id: Atualiza uma despesa existente.
+
+•
+DELETE /expenses/:id: Remove uma despesa.
+
+3. Filtros Avançados
+
+A rota GET /expenses aceita os seguintes parâmetros na URL:
+
+•
+status: PAGA ou PENDENTE.
+
+•
+valorMin / valorMax: Faixa de preço.
+
+•
+dataInicio / dataFim: Período de tempo.
+
+•
+categoria: Filtro por ID de categoria.
+
+4. Dashboard
+
+•
+GET /dashboard/total-expenses: Soma total de gastos.
+
+•
+GET /dashboard/expenses-by-category: Relatório de gastos agrupados.
+
+

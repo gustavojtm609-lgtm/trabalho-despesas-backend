@@ -1,0 +1,385 @@
+{
+  "info": {
+    "_postman_id": "27218a57-3ddd-4cb2-8b2c-68e69384d4f7",
+    "name": "Despesas",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49418398"
+  },
+  "item": [
+    {
+      "name": "Criar usuário",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"gustavo@gmail.com\",\r\n  \"senha\": \"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "request": {
+        "auth": {
+          "type": "bearer"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"gustavo@gmail.com\",\r\n  \"senha\": \"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar categoria",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg2YWNmOTg0LTU4MjMtNDdlZi04MzI1LTU5MmY2ZWU5OWQ4OSIsImlhdCI6MTc4Mjg2MTEzOSwiZXhwIjoxNzgyOTQ3NTM5fQ.piOOfe7pQXChIWt0H9rwNXJ7DifFrTUiJjOnNhnuIC8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nome\": \"Educação\",\r\n  \"descricao\": \"Investimento no amanhã\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/categories",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "categories"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar despesa",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg2YWNmOTg0LTU4MjMtNDdlZi04MzI1LTU5MmY2ZWU5OWQ4OSIsImlhdCI6MTc4Mjg2MTEzOSwiZXhwIjoxNzgyOTQ3NTM5fQ.piOOfe7pQXChIWt0H9rwNXJ7DifFrTUiJjOnNhnuIC8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"descricao\": \"Remédio para gripe\",\r\n  \"valor\": 45.90,\r\n  \"data\": \"2026-06-30\",\r\n  \"status\": \"PAGA\",\r\n  \"categoriaId\": \"6c1d825d-e227-43f0-b1d9-d2c12b668d62\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/expenses",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "expenses"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Pegar despesas",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg2YWNmOTg0LTU4MjMtNDdlZi04MzI1LTU5MmY2ZWU5OWQ4OSIsImlhdCI6MTc4Mjg2MTEzOSwiZXhwIjoxNzgyOTQ3NTM5fQ.piOOfe7pQXChIWt0H9rwNXJ7DifFrTUiJjOnNhnuIC8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/categories",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "categories"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizar despesa",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg2YWNmOTg0LTU4MjMtNDdlZi04MzI1LTU5MmY2ZWU5OWQ4OSIsImlhdCI6MTc4Mjg2MTEzOSwiZXhwIjoxNzgyOTQ3NTM5fQ.piOOfe7pQXChIWt0H9rwNXJ7DifFrTUiJjOnNhnuIC8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"descricao\": \"Remédio para dor de cabeça\",\r\n  \"valor\": 100.90,\r\n  \"data\": \"2026-06-30\",\r\n  \"status\": \"PAGA\",\r\n  \"categoriaId\": \"f15d9ff8-3b3e-44c2-ac0d-737736bafec3\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/expenses/6a201c2c-fbc9-4e23-b8a2-ea040f9ebd99",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "expenses",
+            "6a201c2c-fbc9-4e23-b8a2-ea040f9ebd99"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete despesa",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg2YWNmOTg0LTU4MjMtNDdlZi04MzI1LTU5MmY2ZWU5OWQ4OSIsImlhdCI6MTc4Mjg2MTEzOSwiZXhwIjoxNzgyOTQ3NTM5fQ.piOOfe7pQXChIWt0H9rwNXJ7DifFrTUiJjOnNhnuIC8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"descricao\": \"Remédio para dor de cabeça\",\r\n  \"valor\": 100.90,\r\n  \"data\": \"2026-06-30\",\r\n  \"status\": \"PAGA\",\r\n  \"categoriaId\": \"f15d9ff8-3b3e-44c2-ac0d-737736bafec3\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/expenses/44a35b16-ab7d-40fb-94d1-b7997c1c403d",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "expenses",
+            "44a35b16-ab7d-40fb-94d1-b7997c1c403d"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Pegar categoria",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg2YWNmOTg0LTU4MjMtNDdlZi04MzI1LTU5MmY2ZWU5OWQ4OSIsImlhdCI6MTc4Mjg2MTEzOSwiZXhwIjoxNzgyOTQ3NTM5fQ.piOOfe7pQXChIWt0H9rwNXJ7DifFrTUiJjOnNhnuIC8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/categories",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "categories"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizar categoria",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg2YWNmOTg0LTU4MjMtNDdlZi04MzI1LTU5MmY2ZWU5OWQ4OSIsImlhdCI6MTc4Mjg2MTEzOSwiZXhwIjoxNzgyOTQ3NTM5fQ.piOOfe7pQXChIWt0H9rwNXJ7DifFrTUiJjOnNhnuIC8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"nome\": \"Lazer e Férias\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/categories/edd05db7-e28e-4016-8ef8-3c594c00fd1a",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "categories",
+            "edd05db7-e28e-4016-8ef8-3c594c00fd1a"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New request",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg2YWNmOTg0LTU4MjMtNDdlZi04MzI1LTU5MmY2ZWU5OWQ4OSIsImlhdCI6MTc4Mjg2MTEzOSwiZXhwIjoxNzgyOTQ3NTM5fQ.piOOfe7pQXChIWt0H9rwNXJ7DifFrTUiJjOnNhnuIC8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/categories/edd05db7-e28e-4016-8ef8-3c594c00fd1a",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "categories",
+            "edd05db7-e28e-4016-8ef8-3c594c00fd1a"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
